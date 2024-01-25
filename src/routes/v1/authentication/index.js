@@ -7,7 +7,7 @@ const router = express.Router()
 router.get("/users", async (req, res) => {
     // console.log(req.headers);
     const result = await User.find();
-    console.log(result);
+    // console.log(result);
     res.send(result);
   });
 
