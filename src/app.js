@@ -7,14 +7,14 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 const authRoutes = require('./routes/v1/authentication/index');
-// const serviceRoutes = require('./routes/v1/services');
+const serviceRoutes = require('./routes/v1/services/index')
 
 applyMiddleware(app);
 
 
 
 app.use(authRoutes)
-// app.use(serviceRoutes)
+app.use(serviceRoutes)
 app.get("/", (req, res) => {
   res.send("doctor is running....");
 });
