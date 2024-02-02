@@ -1,6 +1,7 @@
 const express = require("express")
 const Services = require("../../../models/Services");
-const { addService } = require("../../../api/v1/services");
+const addService = require("../../../api/v1/services/addService");
+
 const router = express.Router()
 
 router.get("/user-services", async(req, res)=>{
