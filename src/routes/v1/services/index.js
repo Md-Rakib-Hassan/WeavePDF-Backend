@@ -6,7 +6,7 @@ const htmlToPdf = require("../../../api/v1/services/htmlToPdf");
 
 const router = express.Router()
 
-router.get("/upload-file", async(req, res)=>{
+router.get("/all-services", async(req, res)=>{
     const result = await Services.find();
     res.send(result)
 })
