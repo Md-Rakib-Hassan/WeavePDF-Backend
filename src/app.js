@@ -14,6 +14,7 @@ applyMiddleware(app);
 
 app.use(authRoutes)
 app.use(serviceRoutes)
+app.use("/files",express.static("files")) //this needs to be done for permission to access from anywhere
 app.get("/", (req, res) => {
   res.send("doctor is running....");
 });
