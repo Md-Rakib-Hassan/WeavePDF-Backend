@@ -2,7 +2,6 @@ const express = require("express");
 const applyMiddleware = require("./middlewares");
 // const globalErrorHandler = require("./utils/globalErrorHandler");
 const connectDB = require("./db/connectDB");
-
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,6 +27,9 @@ app.all("*", (req, res, next) => {
 
 // error handling middleware
 // app.use(globalErrorHandler);
+
+
+
 
 
 const main=async ()=>{
