@@ -5,7 +5,7 @@ const htmlToPdf = async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
     });
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2' });

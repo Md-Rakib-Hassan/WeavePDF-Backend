@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 // handling all (get,post,update,delete.....) unhandled routes
 app.all("*", (req, res, next) => {
-  const error = new Error(`Can't find ${req.originalUrl} on the server`);
+  const error = new Error(`Can't find ${req.originalUrl} on the server please respond`);
   error.status = 404;
   next(error);
 });

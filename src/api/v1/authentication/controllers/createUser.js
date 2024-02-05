@@ -7,8 +7,10 @@ app.use(express.json());
 
 
 const createUser = async (req, res) => {
+  console.log(req.body?.user_Email)
     const result = await User.find({user_Email: req.body?.user_Email});
-    if(result){
+    console.log('---',result)
+    if(result && result.length > 0){
         return res.send({ message: "user already exists", insertedId: null });
     }
 
@@ -16,5 +18,7 @@ const createUser = async (req, res) => {
     const newUser = new User(req.body)
     await newUser.save()
   }
+
+
 
 module.exports = createUser
