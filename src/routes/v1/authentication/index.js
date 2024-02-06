@@ -1,7 +1,10 @@
 const express = require('express');
-const { createUser } = require('../../../api/v1/authentication/controllers');
+const { createUser ,adminIndentify} = require('../../../api/v1/authentication/controllers');
 const User = require('../../../models/User');
 const router = express.Router()
+const app = express();
+
+app.use(express.json());
 
 
 router.get("/users", async (req, res) => {
@@ -12,5 +15,7 @@ router.get("/users", async (req, res) => {
   });
 
 router.post("/users", createUser);
+
+router.get("/users/admin/:email",adminIndentify);
 
 module.exports = router;
