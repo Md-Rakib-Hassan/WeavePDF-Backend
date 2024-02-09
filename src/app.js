@@ -8,6 +8,9 @@ const port = process.env.PORT || 5000;
 const authRoutes = require('./routes/v1/authentication/index');
 const serviceRoutes = require('./routes/v1/services/index')
 const subscriptionRoutes = require('./routes/v1/subscription/index')
+const serviceRoutes = require('./routes/v1/services/index');
+const Reviews = require("./models/Reviews");
+
 applyMiddleware(app);
 
 
@@ -20,9 +23,10 @@ app.get("/", (req, res) => {
   res.send("doctor is running....");
 });
 
+
 // handling all (get,post,update,delete.....) unhandled routes
 app.all("*", (req, res, next) => {
-  const error = new Error(`Can't find ${req.originalUrl} on the server`);
+  const error = new Error(`Can't find ${req.originalUrl} on the server please respond`);
   error.status = 404;
   next(error);
 });

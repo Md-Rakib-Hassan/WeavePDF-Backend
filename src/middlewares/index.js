@@ -8,8 +8,7 @@ const applyMiddleware = (app)=>{
 // middleware
 app.use(cors({
     origin: [
-        LOCAL_CLIENT,
-        CLIENT
+        CLIENT,LOCAL_CLIENT
     ],
     credentials: true
 }));
