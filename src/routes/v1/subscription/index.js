@@ -19,7 +19,7 @@ router.post('/create-payment-intent', async (req,res)=>{
 })
 
 router.patch('/make-premium', async(req,res)=>{
-    const email = req.query.email;
+    const email = req.query?.email;
     const filter = {user_Email : email};
     const doc = req.body;
     const option= {upsert: true};
@@ -29,7 +29,7 @@ router.patch('/make-premium', async(req,res)=>{
             subscription_type : doc.subscription_type
         }
     }
-    const result = User.updateOne(filter,updatedDoc)
+    const result = await User.findOneAndUpdate(filter,updatedDoc).exec();
     res.send(result);
 })
 
