@@ -13,6 +13,13 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    isPremium : {
+        type: Boolean,
+        default: false
+    },
+    subscription_type : {
+        type: String
+    }
     
   });
 
