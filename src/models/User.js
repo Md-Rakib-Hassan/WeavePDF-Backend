@@ -1,6 +1,28 @@
 const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
+
+    user_Name: {
+        type: String,
+        required: true
+    },
+    user_Email: {
+        type: String,
+        required: true
+    },
+    user_Profile_Picture: {
+        type: String,
+        required: true
+    },
+    isPremium : {
+        type: Boolean,
+        default: false
+    },
+    subscription_type : {
+        type: String
+    }
+    
+  });
   user_Name: {
     type: String,
     required: true,
@@ -19,6 +41,7 @@ const userSchema = new Schema({
     default: "user",
   },
 });
+
 
 const User = model("User", userSchema);
 

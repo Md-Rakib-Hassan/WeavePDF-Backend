@@ -19,6 +19,9 @@ const serviceSchema = new Schema({
     },
     status: {
         type: Boolean
+    },
+    mergedFile : {
+        type : String
     }
 });
 
