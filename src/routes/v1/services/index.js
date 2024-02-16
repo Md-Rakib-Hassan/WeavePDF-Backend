@@ -4,6 +4,7 @@ const Services = require("../../../models/Services");
 const addService = require("../../../api/v1/services/addService");
 const htmlToPdf = require("../../../api/v1/services/htmlToPdf");
 const {postReview,getReview} = require("../../../api/v1/services/reviews");
+const Tasks = require("../../../models/Tasks");
 const router = express.Router()
 
 router.get("/all-services", async(req, res)=>{
@@ -16,6 +17,12 @@ router.post("/user-services", addService)
 router.post('/user-reviews', postReview);
 router.get('/user-reviews/:uniqueId',getReview);
 
+router.post('/tasks',async (req, res) =>{
+  const newTask= new Tasks(req.body);
+  await newTask.save();
+
+})
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,7 +34,7 @@ const storage = multer.diskStorage({
     }
   })
   
-  const upload = multer({ storage: storage })
+  const upload = multer({ storage: storage }) 
   router.post('/upload-file', upload.single('mergedFile'), async(req,res)=>{
       const fileName = req.file.filename;
       try{
