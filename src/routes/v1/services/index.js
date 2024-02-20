@@ -9,6 +9,7 @@ const {
   getAdminContact,
   deleteAdminContact,
 } = require("../../../api/v1/services/adminContact");
+const deleteService = require("../../../api/v1/services/deleteService")
 const router = express.Router();
 
 router.get("/all-services", async (req, res) => {
@@ -23,6 +24,6 @@ router.get("/user-reviews/:uniqueId", getReview);
 router.post("/contact", postAdminContact);
 router.get("/contact", getAdminContact);
 router.delete("/contact/:id", deleteAdminContact);
-
+router.delete("/delete-service/:id", deleteService)
 
 module.exports = router;
