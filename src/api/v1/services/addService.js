@@ -7,9 +7,12 @@ const app = express()
 app.use(express.json())
 
 const addService = async(req,res)=>{
-    // console.log("added service");
-    const service = new Services(req.body);
-    await service.save();
+    const {date, user_email, no_of_files, service_name, status, file} = req.body;
+    // console.log(req.body);
+  const service = new Services({
+    date, user_email, no_of_files, service_name, status
+  })
+  console.log("service to be added: ",service);
 }
 
 module.exports = addService;
