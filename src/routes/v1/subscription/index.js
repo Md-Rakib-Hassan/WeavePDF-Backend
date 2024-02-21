@@ -58,7 +58,8 @@ router.patch('/make-premium', async(req,res)=>{
     const updatedDoc = {
         $set: {
             isPremium : doc.isPremium,
-            subscription_type : doc.subscription_type
+            subscription_type : doc.subscription_type,
+            plan_id: doc.plan_id
         }
     }
     const result = await User.findOneAndUpdate(filter,updatedDoc).exec();

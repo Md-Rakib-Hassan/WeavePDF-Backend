@@ -24,6 +24,9 @@ const userSchema = new Schema({
     },
     subscription_type : {
         type: String
+    },
+    plan_id: {
+        type: String
     }
     
   });
