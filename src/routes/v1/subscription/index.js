@@ -17,6 +17,39 @@ router.post('/create-payment-intent', async (req,res)=>{
     })
 })
 
+router.post('/create-user', async(req,res)=>{
+    const customer = await stripe.customers.create({
+        name: req.query?.name,
+        email: req.query?.email
+    })
+    res.send(customer)
+})
+
+router.post('/start-monthly-subscription', async(req,res)=>{
+    const plan = await stripe.plans.create({
+        amount: 50000, 
+        currency: 'usd',
+        interval: 'month',
+        product: {
+          name: 'Monthly Subscription',
+          type: 'service', // 'service' or 'good'
+        },
+      });
+    res.send(plan)
+})
+router.post('/start-yearly-subscription', async(req,res)=>{
+    const plan = await stripe.plans.create({
+        amount: 540000, 
+        currency: 'usd',
+        interval: 'year',
+        product: {
+          name: 'Yearly Subscription',
+          type: 'service', // 'service' or 'good'
+        },
+      });
+    res.send(plan)
+})
+
 router.patch('/make-premium', async(req,res)=>{
     const email = req.query?.email;
     const filter = {user_Email : email};
@@ -25,7 +58,8 @@ router.patch('/make-premium', async(req,res)=>{
     const updatedDoc = {
         $set: {
             isPremium : doc.isPremium,
-            subscription_type : doc.subscription_type
+            subscription_type : doc.subscription_type,
+            plan_id: doc.plan_id
         }
     }
     const result = await User.findOneAndUpdate(filter,updatedDoc).exec();

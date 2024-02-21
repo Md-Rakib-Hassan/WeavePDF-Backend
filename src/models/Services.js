@@ -20,8 +20,8 @@ const serviceSchema = new Schema({
     status: {
         type: Boolean
     },
-    mergedFile : {
-        type : String
+    file : {
+        type : Buffer
     }
 });
 

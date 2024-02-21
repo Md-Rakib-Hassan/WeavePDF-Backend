@@ -9,6 +9,7 @@ const {
   getAdminContact,
   deleteAdminContact,
 } = require("../../../api/v1/services/adminContact");
+const deleteService = require("../../../api/v1/services/deleteService")
 const router = express.Router();
 
 router.get("/all-services", async (req, res) => {
@@ -17,39 +18,12 @@ router.get("/all-services", async (req, res) => {
 });
 
 router.post("/convertToPDF", htmlToPdf);
-router.post("/user-services", addService);
+router.post("/upload-service", addService);
 router.post("/user-reviews", postReview);
 router.get("/user-reviews/:uniqueId", getReview);
 router.post("/contact", postAdminContact);
 router.get("/contact", getAdminContact);
 router.delete("/contact/:id", deleteAdminContact);
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./files");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-router.post("/upload-file", upload.single("mergedFile"), async (req, res) => {
-  const fileName = req.file.filename;
-  try {
-    Services.create({
-      no_of_files: req.body.no_of_files,
-      date: req.body.date,
-      service_name: req.body.service_name,
-      user_email: req.body.user_email,
-      status: req.body.status,
-      mergedFile: fileName,
-    });
-    res.send({ status: "ok" });
-  } catch (err) {
-    res.json({ status: err });
-  }
-});
+router.delete("/delete-service/:id", deleteService)
 
 module.exports = router;
