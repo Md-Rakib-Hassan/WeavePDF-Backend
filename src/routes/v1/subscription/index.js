@@ -17,6 +17,18 @@ router.post('/create-payment-intent', async (req,res)=>{
     })
 })
 
+router.post('/create-user', async(req,res)=>{
+    const customer = await stripe.customers.create({
+        name: req.query?.name,
+        email: req.query?.email
+    })
+    res.send(customer)
+})
+
+router.post('/start-monthly-subscription', async(req,res)=>{
+    
+})
+
 router.patch('/make-premium', async(req,res)=>{
     const email = req.query?.email;
     const filter = {user_Email : email};
