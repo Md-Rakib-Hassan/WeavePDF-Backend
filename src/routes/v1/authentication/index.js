@@ -10,7 +10,10 @@ app.use(express.json());
 router.get("/users", async (req, res) => {
     // console.log(req.headers);
     const uemail = req.query?.email;
-    const query = { user_Email: uemail }
+    let query = {};
+    if(uemail){
+     query = { user_Email: uemail }
+    }
     const result = await User.find(query);
     // console.log(result);
     res.send(result);
