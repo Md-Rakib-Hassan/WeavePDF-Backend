@@ -30,3 +30,4 @@ const reviewSchema = new Schema({
 
 const Reviews = model('Reviews', reviewSchema);
 module.exports = Reviews;
+
