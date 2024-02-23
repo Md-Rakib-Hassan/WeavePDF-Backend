@@ -4,7 +4,8 @@ const Services = require("../../../models/Services");
 const addService = require("../../../api/v1/services/addService");
 const htmlToPdf = require("../../../api/v1/services/htmlToPdf");
 const {postReview,getReview} = require("../../../api/v1/services/reviews");
-const Tasks = require("../../../models/Tasks");
+const { route } = require("../authentication");
+const { postTask, getTask } = require("../../../api/v1/services/tasks");
 const router = express.Router()
 
 router.get("/all-services", async(req, res)=>{
@@ -16,12 +17,8 @@ router.post('/convertToPDF', htmlToPdf);
 router.post("/user-services", addService)
 router.post('/user-reviews', postReview);
 router.get('/user-reviews/:uniqueId',getReview);
-
-router.post('/tasks',async (req, res) =>{
-  const newTask= new Tasks(req.body);
-  await newTask.save();
-
-})
+router.get('/tasks/:email',getTask)
+router.post('/tasks',postTask)
 
 
 const storage = multer.diskStorage({
