@@ -6,7 +6,7 @@ const postReview=async (req, res) =>{
 }
 
 const getReview = async(req, res) => {
-
+    
     const results=await Reviews.find({uniqueId: req.params.uniqueId})
     res.send(results);
   
