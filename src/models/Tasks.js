@@ -20,6 +20,9 @@ const taskSchema = new Schema({
     no_of_files : {
         type: Number,
         required: true
+    },
+    content:{
+        type: String
     }
     
 });
