@@ -1,32 +1,24 @@
 const express = require("express");
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
+const app = express();
 
-let browser;
+app.use(express.json());
 
 const htmlToPdf = async (req, res) => {
   const { url } = req.body;
-  console.log(url);
+  console.log(url)
 
-  try {
-    if (!browser) {
-      browser = await puppeteer.launch({
-        headless: "new",
-      });
-    }
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(url, { waitUntil: "networkidle2" });
 
-    const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle2' });
-    const pdfBuffer = await page.pdf();
-    await page.close();
+  const pdf = await page.pdf();
 
-    res.contentType('application/pdf');
-    res.send(pdfBuffer);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error converting URL to PDF');
-  }
+  await browser.close();
+
+  res.setHeader("Content-Type", "application/pdf");
+  res.send(pdf);
 };
-
 
 module.exports = htmlToPdf;
