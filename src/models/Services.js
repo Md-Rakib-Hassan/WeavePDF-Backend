@@ -21,7 +21,7 @@ const serviceSchema = new Schema({
         type: Boolean
     },
     file : {
-        type : Buffer
+        type : String
     }
 });
 
