@@ -1,4 +1,4 @@
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const cors = require('cors');
 const express = require("express");
 const { LOCAL_CLIENT,CLIENT } = require("../config/defaults");
@@ -13,7 +13,7 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 }
 
 module.exports = applyMiddleware

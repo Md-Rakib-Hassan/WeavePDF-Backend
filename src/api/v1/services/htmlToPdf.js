@@ -10,7 +10,7 @@ const htmlToPdf = async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: 'networkidle2' });
     const pdfBuffer = await page.pdf();
-    await browser.close();
+    // await browser.close();
 
     res.contentType('application/pdf');
     res.send(pdfBuffer);
