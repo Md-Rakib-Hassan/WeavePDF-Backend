@@ -6,9 +6,9 @@ app.use(express.json())
 
 
 const addService = async(req,res)=>{
-    const {date, user_email, no_of_files, service_name, status} = req.body;
+    const {date, user_email, no_of_files, service_name, status, file} = req.body;
     const service = new Services({
-    date, user_email, no_of_files, service_name, status
+    date, user_email, no_of_files, service_name, status, file
   })
 
   try{
