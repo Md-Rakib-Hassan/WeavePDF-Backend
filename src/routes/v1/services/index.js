@@ -12,7 +12,10 @@ const {
   deleteAdminContact,
 } = require("../../../api/v1/services/adminContact");
 const deleteService = require("../../../api/v1/services/deleteService")
+const fileUpload = require("express-fileupload");
+const extractText = require("../../../api/v1/services/pdfToAudioBook");
 const router = express.Router();
+router.use(fileUpload());
 
 router.get("/all-services", async (req, res) => {
   const result = await Services.find();
@@ -20,6 +23,7 @@ router.get("/all-services", async (req, res) => {
 });
 
 
+router.post("/extract-text", extractText);
 router.get('/tasks/:email',getTask)
 router.post('/tasks',postTask)
 router.post("/convertToPDF", htmlToPdf);
