@@ -1,4 +1,3 @@
-const express = require("express");
 const puppeteer = require('puppeteer');
 const htmlToPdf = async (req, res) => {
   const { url } = req.body;

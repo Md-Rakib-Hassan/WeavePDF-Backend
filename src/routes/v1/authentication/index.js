@@ -6,7 +6,6 @@ const app = express();
 
 app.use(express.json());
 
-
 router.get("/users", async (req, res) => {
     // console.log(req.headers);
     const uemail = req.query?.email;
